@@ -3,6 +3,7 @@ import React, { use, useActionState, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from "axios"
 import { toast } from 'react-toastify'
+import { baseUrl } from '../api'
 
 
 export default function Edit() {
@@ -19,7 +20,7 @@ export default function Edit() {
 
   const fetchSingleExpense = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/expense/view/${expenseId}`)
+      const res = await axios.get(`${baseUrl}/api/expense/view/${expenseId}`)
      // console.log(res.data)
       if (res.data.success) {
         setFormData(res.data.expenseDetails)
@@ -37,7 +38,7 @@ export default function Edit() {
     //console.log(formData)
     setIsLoading(true)
     try {
-      const res = await axios.put(`http://localhost:8000/api/expense/edit/${expenseId}`,
+      const res = await axios.put(`${baseUrl}/api/expense/edit/${expenseId}`,
         formData)
       // console.log(res)
       if (res.data.success) {
