@@ -1,0 +1,1 @@
+export const baseUrl="https://expense-tracker-server-pyg5.onrender.com"

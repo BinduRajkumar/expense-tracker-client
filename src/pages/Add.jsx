@@ -3,6 +3,7 @@ import React, { use, useActionState, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { toast } from 'react-toastify'
+import { baseUrl } from '../api'
 
 
 export default function Add() {
@@ -17,8 +18,7 @@ const [isLoading,setIsLoading]=useState(false)
         //console.log(formData)
         setIsLoading(true)
         try {
-            const res=await axios.post(`http://localhost:8000/api/expense/insert`,
-                formData)
+            const res=await axios.post(`${baseUrl}/api/expense/insert`,formData)
                // console.log(res)
             if (res.data.success) {
                 toast(res.data.message)
@@ -31,7 +31,7 @@ const [isLoading,setIsLoading]=useState(false)
                 toast.error(res.data.message)
             }
         } catch (error) {
-            console.log(error)
+            //console.log(error)
         }finally{
             setTimeout(()=>{
                     setIsLoading(false)
